@@ -1,0 +1,23 @@
+<div *ngIf="newsletterSendData">
+  <mat-horizontal-stepper #stepper>
+    <mat-step [editable]="true">
+      <app-newsletter-send-step1 [newsletterId]="newsletterSendData.newsletterId"></app-newsletter-send-step1>
+    </mat-step>
+
+    <mat-step [editable]="true">
+      <app-newsletter-send-step2 [newsletterId]="newsletterSendData.newsletterId"></app-newsletter-send-step2>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </mat-step>
+
+    <mat-step>
+      <app-newsletter-send-step3 [newsletterId]="newsletterSendData.newsletterId"></app-newsletter-send-step3>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+<div *ngIf="newsletterSendData == undefined">
+  Error: Newsletter not found
+</div>

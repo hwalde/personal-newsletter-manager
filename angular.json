@@ -25,7 +25,8 @@
             "scripts": [],
             "customWebpackConfig": {
               "path": "./angular.webpack.js"
-            }
+            },
+            "allowedCommonJsDependencies": ["lokijs"]
           },
           "configurations": {
             "dev": {
@@ -158,5 +159,8 @@
     "@schematics/angular:directive": {
       "prefix": "app"
     }
+  },
+  "cli": {
+    "analytics": "0ca14928-3f40-46a0-9dcc-0490a1e8dd40"
   }
 }

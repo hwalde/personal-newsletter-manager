@@ -1,0 +1,9 @@
+<h2>Export Database</h2>
+<button mat-raised-button (click)="downloadBackup()" color="primary">Export Database</button>
+<br><br>
+<h2>Import Database</h2>
+<p style="color:red"><strong>Note: </strong>This will overwrite all existing data!</p>
+<input #importInput hidden="true" type="file" onclick="this.value=null" (change)="uploadImport($event)" accept=".pnm-backup.json"/>
+<button mat-flat-button color="primary" (click)="importInput.click()">Choose file to import</button>
+<p style="color:red" *ngIf="importError"><strong>Error: </strong>{{importError}}</p>
+<span *ngIf="processingImport"><strong>Processing.. Please wait..</strong></span>

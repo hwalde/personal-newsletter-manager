@@ -1,0 +1,90 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>Settings</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Manual on how to get OAuth running:
+        <a href="https://www.youtube.com/watch?v=-rcRf7yswfM" target="_blank">https://www.youtube.com/watch?v=-rcRf7yswfM</a>
+      </p>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Sender name" formControlName="senderName">
+            <mat-error *ngIf="form.controls['senderName'].hasError('required')">
+              Sender name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Sender Email" formControlName="senderEmail">
+            <mat-error *ngIf="form.controls['senderEmail'].hasError('required')">
+              Sender Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="form.controls['senderEmail'].hasError('email')">
+              Sender Email is <strong>not</strong> a valid email address
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="OAuth user" formControlName="user">
+            <mat-error *ngIf="form.controls['user'].hasError('required')">
+              OAuth user is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="OAuth Client Id" formControlName="clientId">
+            <mat-error *ngIf="form.controls['clientId'].hasError('required')">
+              OAuth clientId is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="OAuth Client Secret" formControlName="clientSecret">
+            <mat-error *ngIf="form.controls['clientSecret'].hasError('required')">
+              OAuth Client Secret is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="OAuth Refresh Token" formControlName="refreshToken"></textarea>
+            <mat-error *ngIf="form.controls['refreshToken'].hasError('required')">
+              OAuth Refresh Token is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" style="margin-left: 9px;margin-right: 9px">Save</button>
+      or
+      <button mat-raised-button color="primary" *ngIf="
+      form.controls['senderName'].value
+      && form.controls['senderEmail'].value
+      && form.controls['user'].value
+      && form.controls['clientId'].value
+      && form.controls['clientSecret'].value
+      && form.controls['senderEmail'].value"
+      (click)="saveAndSendTestMail()"
+      >Save and send test mail to "{{form.controls['senderEmail'].value}}"</button>
+
+      <pre *ngIf="log" class="log-container">{{log}}</pre>
+    </mat-card-actions>
+  </mat-card>
+</form>
+

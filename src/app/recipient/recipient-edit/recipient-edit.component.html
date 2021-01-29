@@ -1,0 +1,70 @@
+<form [formGroup]="recipientForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>{{formTitle}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First name" formControlName="firstName">
+            <mat-error *ngIf="recipientForm.controls['firstName'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last name" formControlName="lastName">
+            <mat-error *ngIf="recipientForm.controls['lastName'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="How you call that person" formControlName="callingName">
+            <mat-error *ngIf="recipientForm.controls['callingName'].hasError('required')">
+              How you call that person is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="E-Mail address" formControlName="emailAddress">
+            <mat-error *ngIf="recipientForm.controls['emailAddress'].hasError('required')">
+              E-Mail address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Default greeting" formControlName="defaultGreeting">
+            <mat-error *ngIf="recipientForm.controls['defaultGreeting'].hasError('required')">
+              Formal salutation is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Default salutation" formControlName="defaultSalutation"></textarea>
+            <mat-error *ngIf="recipientForm.controls['defaultSalutation'].hasError('required')">
+              Default greeting is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

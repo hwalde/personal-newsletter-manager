@@ -1,0 +1,59 @@
+.full-width {
+  width: 100%;
+}
+
+.form-card {
+  min-width: 120px;
+  margin: 20px auto;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+#message-body-textarea {
+  // height: 400px;
+}
+
+.newsletter-content {
+  display: flex;
+  &__content {
+    width: calc(100% - 230px);
+
+  }
+  &__sidebar {
+    width: 230px;
+  }
+}
+
+.sidebar {
+  background: #efefef;
+  width: 200px;
+  margin-left: 20px;
+  padding: 5px;
+  text-align: center;
+
+  a {
+    margin: 0 10px 5px 10px;
+  }
+  a:last-of-type {
+    margin-bottom: 15px;
+  }
+}
+
+

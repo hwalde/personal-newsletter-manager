@@ -1,0 +1,10 @@
+<h2>Step 2: Personalization</h2>
+<table id="newsletter-customization-table" *ngIf="(newsletter$ | async) as newsletter">
+  <tr><td><strong>Created:</strong></td><td>{{newsletter.creationDate.toLocaleString()}}</td></tr>
+  <tr><td><strong>Subject:</strong></td><td>{{newsletter.subject}}</td></tr>
+  <tr><td><strong>Message:</strong></td><td><pre class="email-message">{{newsletter.message}}</pre></td></tr>
+</table>
+<div id="newsletter-customization-containers" *ngIf="newsletterSendData">
+  <app-custom-newsletter-mail-settings *ngFor="let recipient of newsletterSendData.recipientDataList" [newsletterId]="newsletterSendData.newsletterId" [recipientId]="recipient.recipientId" [askForPersonalMessage]="newsletterContainsPersonalMessagePlaceholder"></app-custom-newsletter-mail-settings>
+  <p *ngIf="newsletterSendData.recipientDataList.length == 0">No recipient selected.</p>
+</div>

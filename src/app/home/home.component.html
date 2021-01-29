@@ -1,7 +1,14 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
-
-  <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
+  <mat-action-list>
+    <button mat-list-item routerLink="/recipients">Recipients</button>
+    <button mat-list-item routerLink="/recipient-groups">Recipient Groups</button>
+    <button mat-list-item routerLink="/newsletters">Newsletter</button>
+    <button mat-list-item routerLink="/settings">Settings</button>
+    <button mat-list-item routerLink="/backup">Backup / Backup Restore</button>
+  </mat-action-list>
+  <div class="info-box">
+    <h3 style="margin-bottom: 5px">System Info:</h3>
+    System version: {{systemVersion}}<br>
+    Database version: {{databaseVersion$ | async}}
+  </div>
 </div>

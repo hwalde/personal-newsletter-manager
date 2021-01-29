@@ -1,0 +1,39 @@
+<h2>Step 3: Send mails</h2>
+<div *ngIf="newsletterSendData.recipientDataList.length > 0">
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel *ngFor="let recipientData of newsletterSendData.recipientDataList">
+      <mat-expansion-panel-header>
+        <mat-panel-title *ngIf="recipientId2RecipientMap.get(recipientData.recipientId) as recipient">
+          {{recipient.firstName}} {{recipient.lastName}}
+          &lt;{{recipient.emailAddress}}&gt; (Status: {{recipientData.status}}) <span class="error" *ngIf="recipientData.sendError">&nbsp;Sending failed.</span>
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <table class="newsletter-send-step3-result">
+        <tr *ngIf="recipientData.sendError"><td><strong>The following error happened:</strong></td><td><pre class="email-message error">{{recipientData.sendError}}</pre></td></tr>
+        <tr *ngIf="recipientData.sendLog"><td><strong>E-Mail-Sending Log-Output:</strong></td><td><pre class="email-message">{{recipientData.sendLog}}</pre></td></tr>
+        <tr><td><strong>E-Mail Subject:</strong></td><td>{{recipientId2RenderedSubjectMap.get(recipientData.recipientId)}}</td></tr>
+        <tr><td><strong>E-Mail Message:</strong></td><td><pre class="email-message">{{recipientId2RenderedMessageMap.get(recipientData.recipientId)}}</pre></td></tr>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div>
+    <button mat-raised-button
+            color="primary"
+            [class.spinner]="sendingMails"
+            (click)="sendNewsletter()"
+            [disabled]="sendingMails || !(this.canSendMails$ | async)"
+    >Send newsletter</button>
+    <span class="error" *ngIf="!(this.canSendMails$ | async)">Cannot send newsletter, because mail settings are missing. Please set the mail settings on the <a routerLink="/settings">Settings page</a>.</span>
+  </div>
+  <br>
+  <button mat-raised-button color="primary" (click)="endSendingProcess()">Finish process</button>
+</div>
+<div *ngIf="newsletterSendData.recipientDataList.length == 0">
+  <p>No recipient selected.</p>
+  <p><a [routerLink]="['/newsletter/view', newsletterId]">End newsletter sending process (go back to newsletter details page)</a></p>
+</div>
+
+

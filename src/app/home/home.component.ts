@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {DatabaseService} from "../shared/services/database.service";
+import {SystemService} from "../shared/services/system.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -8,8 +11,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private systemService: SystemService) { }
 
-  ngOnInit(): void { }
+  databaseVersion$: Observable<string>;
+  systemVersion = "unknown";
+
+  ngOnInit(): void {
+    this.databaseVersion$ = this.systemService.getDatabaseVersion();
+    this.systemVersion = this.systemService.getSystemVersion();
+  }
 
 }

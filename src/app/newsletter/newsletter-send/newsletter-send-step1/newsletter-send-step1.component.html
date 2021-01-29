@@ -1,0 +1,38 @@
+<h2>Step 1: Choose recipients</h2>
+<div class="news-letter-step1-container">
+  <ng-select
+    [items]="recipientList$ | async"
+    [multiple]="true"
+    [closeOnSelect]="false"
+    [searchable]="true"
+    bindLabel="firstName"
+    placeholder="Select recipients"
+    [searchFn]="customSearchFn"
+    [(ngModel)]="selectedRecipientList"
+    (add)="onAddRecipient($event)"
+    (remove)="onRemoveRecipient($event)"
+    (clear)="onClear()">
+    <ng-template ng-option-tmp let-recipient="item">
+      {{recipient.firstName}} {{recipient.lastName}} &lt;{{recipient.emailAddress}}&gt;
+      <span *ngIf="(isInUse$(recipient.id) | async) == true" class="option-span">
+    {{recipient.firstName}} {{recipient.lastName}} already received this newsletter on {{getInUseString$(recipient.id) | async}}.
+  </span>
+    </ng-template>
+    <ng-template ng-label-tmp let-recipient="item">
+      <div class="custom-label" [style]="{backgroundColor: (isInUse$(recipient.id) | async) == true ? 'orange' : 'green'}">
+      <span class="custom-label__inner">
+        {{recipient.firstName}} {{recipient.lastName}} &lt;{{recipient.emailAddress}}&gt;
+        <span *ngIf="(isInUse$(recipient.id) | async) == true">
+          <br>
+          <strong>Warning:</strong> {{recipient.firstName}} {{recipient.lastName}} already received this newsletter on {{getInUseString$(recipient.id) | async}}
+        </span>
+        <a class="delete-link" (click)="deleteRecipient(recipient)">(x)</a>
+      </span>
+      </div>
+    </ng-template>
+  </ng-select>
+  <button mat-button (click)="openRecipientGroupSectionDialog()">Add Recipient Group</button>
+  <br>
+  <button mat-button matStepperNext>Next</button>
+</div>
+

@@ -1,3 +1,37 @@
 :host {
-  
+  .application-header {
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    background: #cadfff;
+    height: 36px;
+    justify-content: space-between;
+    padding: 2px;
+    border-bottom: 1px solid #5578b1;
+    * {
+      height:34px;
+    }
+    &__logo {
+      margin-left: 4px;
+      height: 30px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 4px;
+    }
+    &__title {
+      position: absolute;
+      left: 47px;
+      padding-top: 3px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &__links {
+      align-self: flex-end;
+      flex-basis: auto;
+      padding-bottom: 1.5px;
+      * {
+        margin-right: 4px;
+      }
+    }
+  }
 }

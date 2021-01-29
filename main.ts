@@ -25,6 +25,9 @@ function createWindow(): BrowserWindow {
     },
   });
 
+  // disable menus
+  win.setMenu(null);
+
   if (serve) {
 
     win.webContents.openDevTools();
@@ -35,6 +38,8 @@ function createWindow(): BrowserWindow {
     win.loadURL('http://localhost:4200');
 
   } else {
+    win.webContents.openDevTools();
+
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',

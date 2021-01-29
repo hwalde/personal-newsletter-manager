@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Select Groups to add</h1>
+<div mat-dialog-content style="height: 250px;">
+  <ng-select
+    [items]="recipientGroupList$ | async"
+    [multiple]="true"
+    [closeOnSelect]="false"
+    [searchable]="true"
+    bindLabel="title"
+    placeholder="Select recipient group"
+    [(ngModel)]="selectedRecipientGroupList"
+    [ngModelOptions]="{standalone: true}">
+  </ng-select>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()" cdkFocusInitial>Abort</button>
+  <button mat-button (click)="addGroups()">Add groups</button>
+</div>

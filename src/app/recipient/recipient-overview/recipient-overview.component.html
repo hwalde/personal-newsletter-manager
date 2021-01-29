@@ -1,0 +1,42 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- firstName Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>First name</th>
+      <td mat-cell *matCellDef="let row">{{row.firstName}}</td>
+    </ng-container>
+
+    <!-- firstName Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
+      <td mat-cell *matCellDef="let row">{{row.lastName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let row" class="action-link">
+        <a [routerLink]="['/recipient', row.id]">Edit</a> |
+        <a href="javascript:void(0)" (click)="openDeleteDialog(row)">Delete</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="table?.dataSource['data']?.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+
+</div>
+<button mat-raised-button color="primary" style="margin: 1em" routerLink="/recipient/add">Add recipient</button>

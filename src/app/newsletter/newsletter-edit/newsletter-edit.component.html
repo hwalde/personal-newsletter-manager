@@ -1,0 +1,67 @@
+<form [formGroup]="newsletterForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>{{formTitle}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Internal title" formControlName="internalTitle">
+            <mat-error *ngIf="newsletterForm.controls['internalTitle'].hasError('required')">
+              Internal title is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="newsletter-content">
+        <div class="newsletter-content__content">
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input (focus)="hasSubjectFocus = true; hasMessageBodyFocus = false" id="subject-input" matInput placeholder="E-Mail subject" formControlName="subject">
+                <mat-error *ngIf="newsletterForm.controls['subject'].hasError('required')">
+                  E-Mail subject is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <textarea (focus)="hasSubjectFocus = false; hasMessageBodyFocus = true" id="message-body-textarea" (keydown)="adjustTextareaHeight()" matInput placeholder="E-Mail message body (text)" formControlName="message"></textarea>
+                <mat-error *ngIf="newsletterForm.controls['message'].hasError('required')">
+                  E-Mail message body (text) is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="newsletter-content__sidebar">
+          <div class="sidebar">
+            <h2>Placeholders</h2>
+            <p>Add these placeholders to the subject and message of the email as needed.</p>
+            <a mat-raised-button (click)="insertCode('callingName')">Calling name</a>
+            <br>
+            <br>
+            <a mat-raised-button (click)="insertCode('firstName')">First name</a>
+            <br>
+            <a mat-raised-button (click)="insertCode('lastName')">Last name</a>
+            <br>
+            <br>
+            <a mat-raised-button (click)="insertCode('defaultGreeting')">Default greeting</a>
+            <br>
+            <a mat-raised-button (click)="insertCode('defaultSalutation')">Default salutation</a>
+            <br>
+            <br>
+            <a mat-raised-button (click)="insertCode('personalMessage')">Personal message</a>
+            <p>Personal message will allow you to write a personal message for each recipient before sending the newsletter.</p>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

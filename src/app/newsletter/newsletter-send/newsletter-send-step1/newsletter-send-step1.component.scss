@@ -1,0 +1,32 @@
+.news-letter-step1-container {
+  min-height: 600px;
+}
+
+.custom-label {
+  position: relative;
+  top: -2px;
+  height: calc(100% + 4px);
+  left: -5px;
+  width: calc(100% + 10px);
+  border-radius: 2px;
+  text-align: center;
+
+  &__inner {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.option-span {
+  color: orange;
+  margin-left: 15px;
+}
+
+a.delete-link {
+  text-decoration: underline;
+  color: black;
+  cursor: pointer;
+  &:hover {
+    color:red;
+  }
+}

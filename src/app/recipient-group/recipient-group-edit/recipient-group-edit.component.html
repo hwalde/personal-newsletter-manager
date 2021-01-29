@@ -1,0 +1,51 @@
+<form [formGroup]="recipientGroupForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>{{formTitle}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="recipientGroupForm.controls['title'].hasError('required')">
+              Title is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ng-select
+            [items]="recipientList$ | async"
+            [multiple]="true"
+            [closeOnSelect]="false"
+            [searchable]="true"
+            bindLabel="firstName"
+            placeholder="Select recipients"
+            [searchFn]="customSearchFn"
+            [(ngModel)]="selectedRecipientList"
+            [ngModelOptions]="{standalone: true}"
+            (add)="onAddRecipient($event)"
+            (remove)="onRemoveRecipient($event)"
+            (clear)="onClear()">
+            <ng-template ng-option-tmp let-recipient="item">
+              {{recipient.firstName}} {{recipient.lastName}} &lt;{{recipient.emailAddress}}&gt;
+            </ng-template>
+            <ng-template ng-label-tmp let-recipient="item">
+              <div class="custom-label">
+                <span class="custom-label__inner">
+                  {{recipient.firstName}} {{recipient.lastName}} &lt;{{recipient.emailAddress}}&gt;
+                  <a class="delete-link" (click)="deleteRecipient(recipient)">(x)</a>
+                </span>
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,11 @@
+#newsletter-customization-containers {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.email-message {
+  padding: 5px;
+  border: 1px solid #efefef;
+  overflow-x: auto;
+}

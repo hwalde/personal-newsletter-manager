@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -11,10 +11,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { HomeModule } from './home/home.module';
-import { DetailModule } from './detail/detail.module';
-
 import { AppComponent } from './app.component';
+
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeModule } from './home/home.module';
+import {MatCardModule} from "@angular/material/card";
+import {MatListModule} from "@angular/material/list";
+import {MatButtonModule} from "@angular/material/button";
+import {NewsletterModule} from "./newsletter/newsletter.module";
+import {RecipientModule} from "./recipient/recipient.module";
+import {RecipientGroupModule} from "./recipient-group/recipient-group.module";
+import {SettingModule} from "./setting/setting.module";
+import {SettingComponent} from './setting/setting.component';
+import {MatInputModule} from "@angular/material/input";
+import {BackupModule} from "./backup/backup.module";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -22,7 +32,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SettingComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -30,15 +40,27 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CoreModule,
     SharedModule,
     HomeModule,
-    DetailModule,
+    NewsletterModule,
+    RecipientModule,
+    BackupModule,
+    RecipientGroupModule,
+    SettingModule,
+
+    // IMPORT ALL MODULES BEFORE AppRoutingModule, OR THEIR ROUTES WON'T WORK
     AppRoutingModule,
+    NoopAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    MatCardModule,
+    MatListModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 {
-  "name": "angular-electron",
-  "version": "9.0.3",
-  "description": "Angular 11 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "name": "personal-newsletter-manager",
+  "version": "1.0.0",
+  "description": "Allows to send very personal newsletters. Its a stand alone application. Internally it is using Electron and Angular.",
+  "homepage": "https://github.com/hwalde/personal-newsletter-manager",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Herbert Walde",
+    "email": "herbert.walde@gmail.com"
   },
   "keywords": [
     "angular",
@@ -40,7 +40,19 @@
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "lint": "ng lint"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@angular/animations": "^11.0.0 || ^12.0.0-0",
+    "@angular/cdk": "11.0.4",
+    "@angular/forms": "^11.0.0 || ^12.0.0-0",
+    "@angular/material": "11.0.4",
+    "@ng-bootstrap/ng-bootstrap": "9.0.0",
+    "@ng-select/ng-select": "5.1.0",
+    "@types/lokijs": "1.5.3",
+    "@types/nodemailer": "6.4.0",
+    "compare-versions": "3.6.0",
+    "lokijs": "1.5.11",
+    "nodemailer": "6.4.17"
+  },
   "devDependencies": {
     "@angular-builders/custom-webpack": "10.0.1",
     "@angular-devkit/build-angular": "0.1100.3",
@@ -56,6 +68,7 @@
     "@angular/core": "11.0.3",
     "@angular/forms": "11.0.3",
     "@angular/language-service": "11.0.3",
+    "@angular/localize": "11.0.3",
     "@angular/platform-browser": "11.0.3",
     "@angular/platform-browser-dynamic": "11.0.3",
     "@angular/router": "11.0.3",
@@ -93,7 +106,7 @@
     "ts-node": "9.1.0",
     "tslib": "2.0.3",
     "typescript": "4.0.5",
-    "wait-on": "5.0.1",
+    "wait-on": "5.2.1",
     "webdriver-manager": "12.1.7",
     "zone.js": "0.10.3"
   },
@@ -102,5 +115,18 @@
   },
   "browserslist": [
     "chrome 83"
-  ]
+  ],
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "tls": false,
+    "net": false,
+    "dns": false,
+    "http2": false,
+    "child_process": false,
+    "readline": false,
+    "stream": false,
+    "superCtor": false
+  }
 }

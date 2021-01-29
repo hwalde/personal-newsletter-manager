@@ -1,0 +1,18 @@
+<mat-card class="view-card" *ngIf="newsletter && recipient && newsletterSendData">
+  <mat-card-header>
+    <mat-card-title>{{recipient.firstName}} {{recipient.lastName}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="customizationForm" novalidate (ngSubmit)="onChange()">
+      <mat-form-field class="full-width" *ngIf="askForPersonalMessage">
+        <textarea matInput placeholder="Personal message" formControlName="personalMessage" (change)="onChange()"></textarea>
+        <!--<mat-error *ngIf="customizationForm.controls['personalMessage'].hasError('required')">
+          Personal message is <strong>required</strong>
+        </mat-error>-->
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <!--<a mat-raised-button color="primary" [routerLink]="['/newsletter/edit', newsletter.id]">Edit</a>-->
+  </mat-card-actions>
+</mat-card>
