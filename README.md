@@ -1,17 +1,45 @@
 # Introduction
 
-Personal newsletter manager.
-Build upon ( https://github.com/maximegris/angular-electron.git ).
+Welcome to the Personal Newsletter Manager - a software for sending personal newsletters.
+
+This is a desktop software (written using Angular and Electron, based on https://github.com/maximegris/angular-electron.git ) with to goal to build a newsletter software to stay in touch with friends. Its like a hybrid between personal mailing and newsletter.
+
+These are the Features that bring the personal touch:
+- You can add a personal message block to newsletters.
+- Your personal email address is used (like you would using a mailer software). Unfortunately currently only Google E-Mail Accounts are supported.
+- Data is stored locally on you computer (its your friends.. no webservice should know their contact data).
+- PLANNED: On the page on which you write personal messages, your conversation with the respective person is displayed next to the input field for the personal message.
+- PLANNED: Send and receive messages via Messenger too (as you do with friends)
+
+Here are a couple of screenshots to give you an Idea how this software works:
+
+![plot](./docs/assets/Screenshot%20001.PNG)
+
+![plot](./docs/assets/Screenshot%20002%20-%20Add%20Recipient.PNG)
+
+![plot](./docs/assets/Screenshot%20003%20-%20Recipient%20List.PNG)
+
+![plot](./docs/assets/Screenshot%20005%20-%20New%20newsletter.PNG)
+
+![plot](./docs/assets/Screenshot%20006%20-%20Newsletter%20List.PNG)
+
+![plot](./docs/assets/Screenshot%20009%20-Send%20step%201.PNG)
+
+![plot](./docs/assets/Screenshot%20010%20-Send%20step%202.PNG)
+
+![plot](./docs/assets/Screenshot%20012%20-Send%20step%203.PNG)
+
+![plot](./docs/assets/Screenshot%20015%20-Newsletter%20View%20Page.PNG)
 
 ## Getting Started
 
 Manual on how to get OAuth running:
 https://www.youtube.com/watch?v=-rcRf7yswfM
-
+ 
 Clone this repository locally :
 
 ``` bash
-git clone https://github.com/maximegris/angular-electron.git
+git clone https://github.com/hwalde/personal-newsletter-manager.git
 ```
 
 Install dependencies with npm :
