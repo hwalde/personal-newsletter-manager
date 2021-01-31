@@ -10,6 +10,10 @@ These are the Features that bring the personal touch:
 - Data is stored locally on you computer (its your friends.. no webservice should know their contact data).
 - PLANNED: On the page on which you write personal messages, your conversation with the respective person is displayed next to the input field for the personal message.
 - PLANNED: Send and receive messages via Messenger too (as you do with friends)
+- PLANNED: Conditional-Message-Blocks (In personalisation step you can select who will see the content of that block). Use-case example: You told some of the recipients about some information inside the newsletter already and you don't want them to get a strange feeling.
+- PLANNED: Sending normal emails to a recipient.
+- PLANNED: Seeing all send messages to a recipient on the recipient page plus seeing all the incoming messages of that user as well. Plus ability to answer incoming messages.
+- PLANNED: Pre-written message blocks that can be used to answer incoming messages (E.g. saying thanks for the support). Plus the system warns you if you have already used a message block for the recipient, because you don't want to use the exact same phrase multiple times.
 
 Here are a couple of screenshots to give you an Idea how this software works:
 
@@ -30,6 +34,15 @@ Here are a couple of screenshots to give you an Idea how this software works:
 ![plot](./docs/assets/Screenshot%20012%20-Send%20step%203.PNG)
 
 ![plot](./docs/assets/Screenshot%20015%20-Newsletter%20View%20Page.PNG)
+
+
+## Bugs
+
+If you find any bugs - and that is at the moment pretty likely - don't give up on this software!!
+
+Instead, fill out this form: https://github.com/hwalde/personal-newsletter-manager/issues/new and I assure you that **I will resolve your problem VERY quickly. It will be fixed within in the next couple of hours.**
+
+And I want to thank you for taking the time to fill out that form. Because thanks to you this software will get better.
 
 ## Getting Started
 
