@@ -10,6 +10,7 @@ import {NgOption} from "@ng-select/ng-select/lib/ng-select.types";
 import {map} from "rxjs/operators";
 import {RecipientGroupSelectionDialogComponent} from "./recipient-group-selection-dialog/recipient-group-selection-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {SendMail} from "../../send-mail";
 
 @Component({
   selector: 'app-newsletter-send-step1',
@@ -21,6 +22,8 @@ export class NewsletterSendStep1Component implements OnInit, OnDestroy {
   recipientList$: Observable<Recipient[]>;
   selectedRecipientList: Recipient[] = [];
   private recipientSubscription: Subscription;
+
+  mailsAlreadySendList: SendMail[] = [];
 
   newsletterSendData: NewsletterSendData | undefined = undefined;
   private newsletterSendDataSubscription: Subscription;
@@ -37,6 +40,10 @@ export class NewsletterSendStep1Component implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.recipientList$ = this.recipientService.getRecipientList();
+
+    this.sendMailService.getSendMailListByNewsletterId(this.newsletterId).subscribe(sendMailList => {
+      this.mailsAlreadySendList = sendMailList;
+    });
 
     this.newsletterSendDataSubscription = this.newsletterSendDataService
       .getNewsletterSendDataByNewsletterId(this.newsletterId)
@@ -91,16 +98,15 @@ export class NewsletterSendStep1Component implements OnInit, OnDestroy {
       || recipient.emailAddress.toLowerCase().indexOf(term) > -1
   }
 
-  isInUse$(recipientId:number): Observable<boolean> {
-    return this.sendMailService.getSendMailListByRecipientId(recipientId).pipe(
-      map(sendMailList => sendMailList.length > 0)
-    )
+  isInUse$(recipientId:number): boolean {
+    return this.mailsAlreadySendList.find(sendMail => sendMail.recipientId == recipientId) != null
   }
 
-  getInUseString$(recipientId:number): Observable<string> {
-    return this.sendMailService.getSendMailListByRecipientId(recipientId).pipe(
-      map(sendMailList => sendMailList.map(sendMail => new Date(sendMail.sendDate)?.toDateString()).join(" and "))
-    )
+  getInUseString$(recipientId:number): string {
+    return this.mailsAlreadySendList
+      .filter(sendMail => sendMail.recipientId == recipientId)
+      .map(sendMail => new Date(sendMail.sendDate)?.toDateString())
+      .join(" and ")
   }
 
   deleteRecipient(recipient: Recipient) {

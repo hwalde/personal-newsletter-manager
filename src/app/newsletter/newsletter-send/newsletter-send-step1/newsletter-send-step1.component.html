@@ -14,17 +14,17 @@
     (clear)="onClear()">
     <ng-template ng-option-tmp let-recipient="item">
       {{recipient.firstName}} {{recipient.lastName}} &lt;{{recipient.emailAddress}}&gt;
-      <span *ngIf="(isInUse$(recipient.id) | async) == true" class="option-span">
-    {{recipient.firstName}} {{recipient.lastName}} already received this newsletter on {{getInUseString$(recipient.id) | async}}.
-  </span>
+      <span *ngIf="isInUse$(recipient.id) == true" class="option-span">
+        {{recipient.firstName}} {{recipient.lastName}} already received this newsletter on {{getInUseString$(recipient.id)}}.
+      </span>
     </ng-template>
     <ng-template ng-label-tmp let-recipient="item">
-      <div class="custom-label" [style]="{backgroundColor: (isInUse$(recipient.id) | async) == true ? 'orange' : 'green'}">
+      <div class="custom-label" [style]="{backgroundColor: isInUse$(recipient.id) == true ? 'orange' : 'green'}">
       <span class="custom-label__inner">
         {{recipient.firstName}} {{recipient.lastName}} &lt;{{recipient.emailAddress}}&gt;
-        <span *ngIf="(isInUse$(recipient.id) | async) == true">
+        <span *ngIf="isInUse$(recipient.id) == true">
           <br>
-          <strong>Warning:</strong> {{recipient.firstName}} {{recipient.lastName}} already received this newsletter on {{getInUseString$(recipient.id) | async}}
+          <strong>Warning:</strong> {{recipient.firstName}} {{recipient.lastName}} already received this newsletter on {{getInUseString$(recipient.id)}}
         </span>
         <a class="delete-link" (click)="deleteRecipient(recipient)">(x)</a>
       </span>
