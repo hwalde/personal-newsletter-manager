@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {DatabaseService} from "../shared/services/database.service";
-import {SystemService} from "../shared/services/system.service";
-import {Observable} from "rxjs";
+import { SystemService } from "../shared/services/system.service";
+import { Observable } from "rxjs";
+import { NewsletterSendDataService } from "../newsletter/newsletter-send/newsletter-send-data.service";
 
 @Component({
   selector: 'app-home',
@@ -11,7 +10,7 @@ import {Observable} from "rxjs";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private systemService: SystemService) { }
+  constructor(private systemService: SystemService, private newsletterSendDataService: NewsletterSendDataService) { }
 
   databaseVersion$: Observable<string>;
   systemVersion = "unknown";
@@ -21,4 +20,7 @@ export class HomeComponent implements OnInit {
     this.systemVersion = this.systemService.getSystemVersion();
   }
 
+  logInternalData() {
+    console.log(this.newsletterSendDataService.getListSnapshot());
+  }
 }
