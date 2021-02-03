@@ -49,7 +49,9 @@ export class MailService {
 
     mailData["from"] = this.mailSetting.senderName + '<' + this.mailSetting.senderEmail + '>';
 
-    const result = (await this.oAuthService.getNodemailerTransport()).sendMail(mailData);
+    const transport = (await this.oAuthService.getNodemailerTransport());
+
+    const result = transport.sendMail(mailData);
 
     if(!this.electronService.isElectron) {
       // simulate waiting

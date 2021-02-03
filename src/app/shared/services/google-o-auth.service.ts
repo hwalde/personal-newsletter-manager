@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Observable, of} from "rxjs";
 import { map } from "rxjs/operators";
 import { OAuthSettingService } from "./o-auth-setting.service";
 import { OAuthSetting } from "./o-auth-setting";
@@ -57,10 +57,12 @@ export class GoogleOAuthService {
 
     }
 
-    return new BehaviorSubject(this.accessToken);
+    return of(this.accessToken);
   }
 
   private updateAccessToken():Observable<void> {
+    console.log("in updateAccessToken()")
+
     const header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
     let body = "refresh_token=" + encodeURIComponent(this.oAuthSetting.refreshToken);

@@ -14,6 +14,10 @@ export class NewsletterSendDataService {
 
   constructor() {}
 
+  public getListSnapshot(): NewsletterSendData[]  {
+    return this.newsletterSendDataListSnapshot;
+  }
+
   public getNewsletterSendDataByNewsletterId(newsletterId:number): Observable<NewsletterSendData>
   {
     if(this.newsletterSendDataListSnapshot.find(newsletterSendData => newsletterSendData.newsletterId == newsletterId) === undefined) {
@@ -79,5 +83,4 @@ export class NewsletterSendDataService {
 
     this.newsletterSendDataListSubject$.next(this.newsletterSendDataListSnapshot);
   }
-
 }
