@@ -108,11 +108,11 @@ export class NewsletterSendStep3Component implements OnInit, OnDestroy {
         placeHolderReplaceMap.set("defaultSalutation", recipient.defaultSalutation);
 
         let personalMessage = recipientData.data["personalMessage"] ?? "";
-        if(personalMessage.trim() == "") {
-          personalMessage = " ";
-        } else {
-          personalMessage += "\n";
-        }
+        // if(personalMessage.trim() == "") {
+        //   personalMessage = " ";
+        // } else {
+        //   personalMessage += "\n";
+        // }
 
         placeHolderReplaceMap.set("personalMessage", personalMessage);
 

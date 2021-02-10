@@ -30,7 +30,7 @@ export class TextWithPlaceholders {
     let replacements = this.generateReplacements(placeHolderReplaceMap);
 
     return this.text.replace(/{{\w+}}/g, function(placeholder) {
-      return replacements[placeholder] || placeholder;
+      return replacements[placeholder] != undefined ? replacements[placeholder] : placeholder;
     });
   }
 
