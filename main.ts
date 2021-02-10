@@ -1,6 +1,7 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+const electronLocalshortcut = require('electron-localshortcut');
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
@@ -29,22 +30,20 @@ function createWindow(): BrowserWindow {
   win.setMenu(null);
 
   if (serve) {
-
-    win.webContents.openDevTools();
-
     require('electron-reload')(__dirname, {
       electron: require(`${__dirname}/node_modules/electron`)
     });
     win.loadURL('http://localhost:4200');
-
   } else {
-    win.webContents.openDevTools();
-
     win.loadURL(url.format({
       pathname: path.join(__dirname, 'dist/index.html'),
       protocol: 'file:',
       slashes: true
     }));
+
+    electronLocalshortcut.register(win, 'F12', () => {
+      win.webContents.toggleDevTools();
+    });
   }
 
   // Emitted when the window is closed.

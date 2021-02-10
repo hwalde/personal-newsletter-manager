@@ -50,6 +50,7 @@
     "@types/lokijs": "1.5.3",
     "@types/nodemailer": "6.4.0",
     "compare-versions": "3.6.0",
+    "electron-localshortcut": "3.2.1",
     "lokijs": "1.5.11",
     "nodemailer": "6.4.17"
   },
