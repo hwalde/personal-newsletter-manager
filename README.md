@@ -14,6 +14,7 @@ These are the Features that bring the personal touch:
 - PLANNED: Sending normal emails to a recipient.
 - PLANNED: Seeing all send messages to a recipient on the recipient page plus seeing all the incoming messages of that user as well. Plus ability to answer incoming messages.
 - PLANNED: Pre-written message blocks that can be used to answer incoming messages (E.g. saying thanks for the support). Plus the system warns you if you have already used a message block for the recipient, because you don't want to use the exact same phrase multiple times.
+- PLANNED: Conditional-Message-Blocks function with recipient-groups as well. Use case: Friends with different interests can read sections with different information. 
 
 Here are a couple of screenshots to give you an Idea how this software works:
 
