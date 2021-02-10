@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, ReplaySubject} from "rxjs";
+import {Observable, ReplaySubject} from "rxjs";
 import {NewsletterSendData} from "./newsletter-send-data";
 import {filter, map} from "rxjs/operators";
 

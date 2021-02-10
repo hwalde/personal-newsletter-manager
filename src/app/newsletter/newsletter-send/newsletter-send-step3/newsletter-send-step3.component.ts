@@ -12,8 +12,6 @@ import {Recipient} from "../../../recipient/recipient";
 import {Router} from "@angular/router";
 import {SendMailService} from "../../send-mail.service";
 import {SendMail} from "../../send-mail";
-import {MailSettingService} from "../../../shared/services/mail-setting.service";
-import {OAuthSettingService} from "../../../shared/services/o-auth-setting.service";
 
 @Component({
   selector: 'app-newsletter-send-step3',
@@ -68,6 +66,13 @@ export class NewsletterSendStep3Component implements OnInit, OnDestroy {
       .getNewsletterSendDataByNewsletterId(this.newsletterId)
       .subscribe(newsletterSendData => {
         this.newsletterSendData = newsletterSendData;
+
+        if(this.newsletterSendData.recipientDataList.length > 0) {
+          console.log("Updated newsletterSendData:");
+          console.log(this.newsletterSendData.recipientDataList[0].status);
+        }
+
+
         this.updateDataIfPossible();
       });
 
@@ -132,23 +137,27 @@ export class NewsletterSendStep3Component implements OnInit, OnDestroy {
     }
   }
 
-
   sendNewsletter() {
     this.sendingMails = true;
     this.setStatusOfUnfinishedRecipientsToSending();
+    console.log("Before send:");
+    console.log(this.newsletterSendData.recipientDataList[0].status + " <-");
     this.sendMails();
     this.endSendingProcessIfAllMailsHaveBeenSendSuccessfully();
+    console.log("After send:");
+    console.log(this.newsletterSendData.recipientDataList[0].status + " <-");
+    this.newsletterSendDataService.updateNewsletterSendData(this.newsletterSendData);
     this.sendingMails = false;
   }
 
   private setStatusOfUnfinishedRecipientsToSending() {
     this.newsletterSendData.recipientDataList = this.newsletterSendData.recipientDataList.map(recipientData => {
       if (recipientData.status != "finished") {
+        console.log("set recipient with id " + recipientData.recipientId + " and current status " + recipientData.status + " to status sending");
         recipientData.status = "sending";
       }
       return recipientData;
     });
-    this.newsletterSendDataService.updateNewsletterSendData(this.newsletterSendData);
   }
 
   private sendMails() {
@@ -161,7 +170,7 @@ export class NewsletterSendStep3Component implements OnInit, OnDestroy {
 
   sendMailToRecipient(recipientData: RecipientData, index: number) {
     if (recipientData.status != "sending") {
-      // return; // nothing to do
+        return; // nothing to do
     }
 
     recipientData.sendLog = undefined; // reset send log
@@ -190,8 +199,13 @@ export class NewsletterSendStep3Component implements OnInit, OnDestroy {
 
         recipientData.status = "finished";
 
-
         this.newsletterSendData.recipientDataList[index] = recipientData;
+
+        console.log("Right after send:");
+        console.log(index);
+        console.log(this.newsletterSendData.recipientDataList);
+        console.log(this.newsletterSendData.recipientDataList[index]);
+
         this.newsletterSendDataService.updateNewsletterSendData(this.newsletterSendData);
       })
       .catch(error => {
@@ -200,7 +214,6 @@ export class NewsletterSendStep3Component implements OnInit, OnDestroy {
         this.addToRecipientSendLog(recipientData, 'Email send failed! Here is the error:');
         this.addToRecipientSendLog(recipientData, error);
         recipientData.status = "prepare";
-
 
         this.newsletterSendData.recipientDataList[index] = recipientData;
         this.newsletterSendDataService.updateNewsletterSendData(this.newsletterSendData);
